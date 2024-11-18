@@ -11,4 +11,3 @@ Dataset Description The dataset  includes outputs from EMFAC2021 with the follow
 - **Emissions**: tons/day
 - **Fuel Consumption**: 1000 gallons/day 
 
-Vehicle Categories The dataset includes aggregated vehicle categories based on EMFAC2007 definitions. For detailed definitions of pollutants, processes, and vehicle categories, refer to the EMFAC2021 User's Guide.
