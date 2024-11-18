@@ -98,7 +98,7 @@ class Q1():
         ax1.tick_params(axis='x', labelsize=12)  # Increase x-axis tick label size
         ax1.tick_params(axis='y', labelsize=12)  # Increase y-axis tick label size
 
-        ax1.legend(title="Vehicle Category", bbox_to_anchor=(1.1, 1), fontsize=12, title_fontsize=12)
+        ax1.legend(title="Vehicle Category", fontsize=12, title_fontsize=12)
 
         plt.tight_layout()
         plt.show()
@@ -112,6 +112,9 @@ class Q1():
         top_df = self.grouped_df[self.grouped_df['Region'].isin(top_regions)]
 
         pivot_df = top_df.pivot(index='Region', columns='Vehicle Category', values='Population').fillna(0)
+        pivot_df['Total'] = pivot_df.sum(axis=1)  # Add a 'Total' column
+        pivot_df = pivot_df.sort_values(by='Total', ascending=False)  # Sort by 'Total'
+        pivot_df = pivot_df.drop(columns='Total')  # Drop the 'Total' column after sorting
 
         pivot_df.plot(kind='bar', stacked=True, figsize=(8, 6), colormap='viridis')
 
@@ -120,10 +123,11 @@ class Q1():
         plt.title(f"Top 10 Regions by Population in {year}", fontsize=14)
         plt.xticks(rotation=45, fontsize=12)
         plt.yticks(fontsize=12)
-        plt.legend(title="Vehicle Category", bbox_to_anchor=(1.05, 1), loc='upper left', fontsize=12, title_fontsize=12)
+        plt.legend(title="Vehicle Category", loc='upper right', fontsize=12, title_fontsize=12)
 
         plt.tight_layout()
         plt.show()
+
 # %% Q2
 
 
@@ -546,7 +550,7 @@ class Q4():
         selected_vehicle_categories = self.get_user_selection(vehicle_categories, "Select the vehicle category you want to draw:")
 
         emission_types1 = ['emr_pm2.5', 'emr_pm10', 'emr_nox', 'emr_c02', 'emr_ch4', 'emr_n2o', 'emr_co', 'emr_SOx']
-        emission_types2 = ["PM2.5_TOTAL", "PM10_TOTAL", 'NOx_TOTEX', 'CO2_TOTEX', 'CH4_TOTEX', 'N2O_TOTEX', 'CO_TOTEX', 'SOx_TOTEX']
+        emission_types2 = ["PM2.5_TOTAL", "PM10_TOTAL", "PM2.5_TOTEX", "PM10_TOTEX", 'NOx_TOTEX', 'CO2_TOTEX', 'CH4_TOTEX', 'N2O_TOTEX', 'CO_TOTEX', 'SOx_TOTEX']
         selected_emissions1 = self.get_user_selection(emission_types1, "Select the emission rates you want to draw (normal or weighted average):")
         selected_emissions2 = self.get_user_selection(emission_types2, "Select the emission totals you want to draw:")
 

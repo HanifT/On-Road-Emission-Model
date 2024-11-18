@@ -2,12 +2,12 @@
 import warnings
 warnings.filterwarnings("ignore")
 import sys
-sys.path.append('/Users/haniftayarani/CARB/src')
+sys.path.append('/Users/haniftayarani/On_Road_Emission_Model/src')
 from reading_input import load_csv_as_dataframe
 import utilities
 # %%
 # Reading the file
-input_df = load_csv_as_dataframe('/Users/haniftayarani/CARB/Data/Input_Data.csv')
+input_df = load_csv_as_dataframe('/Users/haniftayarani/On_Road_Emission_Model/Data/Input_Data.csv')
 
 # %% Q1
 """
@@ -67,9 +67,4 @@ q4_instance.analyze_fuel_inconsistencies()
 q4_instance.plot_energy_inconsistencies_heatmap()
 q4_instance.run_analysis()
 q4_instance.analyze_gas_data()
-
-# %%
-
-input_df[(input_df["Calendar Year"]==2035)&(input_df["Vehicle Category"]=="HHDT")]["Total VMT"].sum()
-input_df[(input_df["Calendar Year"]==2035)&(input_df["Vehicle Category"]=="HHDT")]["NOx_RUNEX"].sum()
 
